@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegMagang">
+
+    <RelativeLayout
+        android:id="@+id/rl1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/ly1"
+            android:background="@color/main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/img1"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:src="@drawable/logo2"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60dp"/>
+
+            <ImageView
+                android:layout_marginEnd="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:src="@drawable/exit"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/reg"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/main"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:text="Pendaftaran Magang"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rl1"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/reg"
+        app:layout_constraintBottom_toTopOf="@+id/navbar_regMagang"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_marginStart="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Silahkan Isi Form"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            />
+
+        <EditText
+            android:layout_marginTop="30dp"
+            android:id="@+id/magangNama"
+            android:layout_below="@+id/tv1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama Siswa/Mahasiswa"
+            android:textSize="20sp"
+            />
+
+        <EditText
+            android:id="@+id/magangNim"
+            android:layout_below="@+id/magangNama"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="NIM"
+            android:textSize="20sp"
+            />
+
+        <EditText
+            android:id="@+id/magangSekolah"
+            android:layout_below="@+id/magangNim"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sekolah/Universitas"
+            android:textSize="20sp"
+            />
+
+        <EditText
+            android:id="@+id/magangJurusan"
+            android:layout_below="@+id/magangSekolah"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Jurusan"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/magangNoHp"
+            android:layout_below="@+id/magangJurusan"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nomor Hape"
+            android:inputType="phone"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/magangWaktu"
+            android:layout_below="@+id/magangNoHp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Waktu Magang"
+            android:textSize="20sp" />
+        
+        <Button
+            android:layout_marginTop="20dp"
+            android:id="@+id/btn_upload"
+            android:layout_below="@+id/magangWaktu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Upload Surat Permohonan"
+            android:backgroundTint="@color/btn"
+            android:textSize="10sp" />
+        
+        <Button
+            android:id="@+id/send"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/btn_upload"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="@color/main"
+            android:text="kirim"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navbar_regMagang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:itemIconTint="@color/main"
+        app:itemTextColor="@color/main"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/navbar_menu"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
