@@ -11,35 +11,18 @@
         android:id="@+id/rl1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/ly1"
-            android:background="@color/main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <ImageView
-                android:id="@+id/img1"
-                android:layout_marginStart="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:src="@drawable/logo2"/>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="60dp"/>
-
-            <ImageView
-                android:layout_marginEnd="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:src="@drawable/exit"/>
-
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/img1"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:src="@drawable/logo2"
+            android:contentDescription="@string/app_name" />
 
     </RelativeLayout>
 
@@ -58,42 +41,52 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rl1"/>
 
-    <RelativeLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:padding="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/navbar"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@+id/navbar_upbs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upbs">
 
-        <ImageView
-            android:id="@+id/stock"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:src="@drawable/upbs_1" />
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/info"
-            android:layout_below="@+id/stock"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:src="@drawable/upbs_2" />
+            <ImageView
+                android:id="@+id/stock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:src="@drawable/upbs_1" />
 
-        <ImageView
-            android:id="@+id/help"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/info"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/upbs_3" />
+            <ImageView
+                android:id="@+id/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/stock"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/upbs_2" />
 
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/info"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/upbs_3" />
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navbar_upbs"
@@ -102,6 +95,7 @@
         android:background="@color/white"
         app:itemIconTint="@color/main"
         app:itemTextColor="@color/main"
+        app:itemActiveIndicatorStyle="@color/white"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -2,44 +2,27 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
+    android:background="@color/grey"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegMagang">
+    tools:context=".FormMagang">
 
     <RelativeLayout
         android:id="@+id/rl1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/ly1"
-            android:background="@color/main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <ImageView
-                android:id="@+id/img1"
-                android:layout_marginStart="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:src="@drawable/logo2"/>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="60dp"/>
-
-            <ImageView
-                android:layout_marginEnd="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:src="@drawable/exit"/>
-
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/img1"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/logo2"/>
 
     </RelativeLayout>
 
@@ -58,7 +41,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rl1"/>
 
-    <RelativeLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="40dp"
@@ -67,105 +50,138 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/tv1"
-            android:layout_marginStart="20dp"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Silahkan Isi Form"
-            android:textSize="20dp"
-            android:textColor="@color/black"
-            />
+            android:layout_height="match_parent">
 
-        <EditText
-            android:layout_marginTop="30dp"
-            android:id="@+id/magangNama"
-            android:layout_below="@+id/tv1"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nama Siswa/Mahasiswa"
-            android:textSize="20sp"
-            />
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_marginStart="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/title_form"
+                android:textSize="20sp"
+                android:textColor="@color/black" />
 
-        <EditText
-            android:id="@+id/magangNim"
-            android:layout_below="@+id/magangNama"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="NIM"
-            android:textSize="20sp"
-            />
+            <EditText
+                android:layout_marginTop="30dp"
+                android:id="@+id/magangNama"
+                android:layout_below="@+id/tv1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:inputType="text"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:hint="@string/n_siswa"
+                android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/magangSekolah"
-            android:layout_below="@+id/magangNim"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Sekolah/Universitas"
-            android:textSize="20sp"
-            />
+            <EditText
+                android:id="@+id/magangNim"
+                android:layout_below="@+id/magangNama"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:hint="@string/n_nim"
+                android:inputType="number"
+                android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/magangJurusan"
-            android:layout_below="@+id/magangSekolah"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Jurusan"
-            android:textSize="20sp" />
+            <EditText
+                android:id="@+id/magangSekolah"
+                android:layout_below="@+id/magangNim"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:inputType="text"
+                android:hint="@string/n_univ"
+                android:textSize="20sp"
+                />
 
-        <EditText
-            android:id="@+id/magangNoHp"
-            android:layout_below="@+id/magangJurusan"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nomor Hape"
-            android:inputType="phone"
-            android:textSize="20sp" />
+            <EditText
+                android:id="@+id/magangJurusan"
+                android:layout_below="@+id/magangSekolah"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:inputType="text"
+                android:hint="@string/n_jurusan"
+                android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/magangWaktu"
-            android:layout_below="@+id/magangNoHp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Waktu Magang"
-            android:textSize="20sp" />
-        
-        <Button
-            android:layout_marginTop="20dp"
-            android:id="@+id/btn_upload"
-            android:layout_below="@+id/magangWaktu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Upload Surat Permohonan"
-            android:backgroundTint="@color/btn"
-            android:textSize="10sp" />
-        
-        <Button
-            android:id="@+id/send"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/btn_upload"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="10dp"
-            android:backgroundTint="@color/main"
-            android:text="kirim"
-            android:textSize="15sp" />
+            <EditText
+                android:id="@+id/magangNoHp"
+                android:layout_below="@+id/magangJurusan"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:hint="@string/n_hape"
+                android:inputType="phone"
+                android:textSize="20sp" />
 
-    </RelativeLayout>
+            <EditText
+                android:id="@+id/magangWaktu"
+                android:layout_below="@+id/magangNoHp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:inputType="text"
+                android:hint="@string/n_magang"
+                android:textSize="20sp" />
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:id="@+id/uploadFile"
+                android:layout_below="@+id/magangWaktu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="@string/upload"
+                android:backgroundTint="@color/white"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/send"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/uploadFile"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/main"
+                android:text="@string/kirim"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navbar_regMagang"
@@ -174,6 +190,7 @@
         android:background="@color/white"
         app:itemIconTint="@color/main"
         app:itemTextColor="@color/main"
+        app:itemActiveIndicatorStyle="@color/white"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

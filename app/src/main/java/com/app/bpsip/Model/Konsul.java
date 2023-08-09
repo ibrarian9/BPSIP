@@ -16,9 +16,9 @@ public class Konsul {
     @SerializedName("konsultasi_no_hp")
     private String noHp;
     @SerializedName("konsultasi_pesan")
-    private int pesan;
+    private String pesan;
 
-    public Konsul(String nik, String nama, String alamat, String institusi, String email, String noHp, int pesan) {
+    public Konsul(String nik, String nama, String alamat, String institusi, String email, String noHp, String pesan) {
         this.nik = nik;
         this.nama = nama;
         this.alamat = alamat;
@@ -78,11 +78,11 @@ public class Konsul {
         this.noHp = noHp;
     }
 
-    public int getPesan() {
+    public String getPesan() {
         return pesan;
     }
 
-    public void setPesan(int pesan) {
+    public void setPesan(String pesan) {
         this.pesan = pesan;
     }
 }

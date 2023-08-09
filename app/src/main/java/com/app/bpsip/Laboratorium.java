@@ -3,6 +3,7 @@ package com.app.bpsip;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -10,13 +11,17 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Laboratorium extends AppCompatActivity {
 
+    ImageView lingkup, form;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laboratorium);
 
-        ImageView form = findViewById(R.id.tv5);
-        form.setOnClickListener(view -> startActivity(new Intent(Laboratorium.this, RegSample.class)));
+        lingkup = findViewById(R.id.lingkup);
+        lingkup.setOnClickListener(view -> startActivity(new Intent(Laboratorium.this, LabLingkup.class)));
+
+        form = findViewById(R.id.tv5);
+        form.setOnClickListener(view -> startActivity(new Intent(Laboratorium.this, FormSample.class)));
 
         BottomNavigationView botNavbar = findViewById(R.id.navbar_labor);
         botNavbar.setOnItemSelectedListener(item -> {

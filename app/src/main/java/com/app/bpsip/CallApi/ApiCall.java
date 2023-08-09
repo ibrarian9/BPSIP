@@ -4,7 +4,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiCall {
-    public static final String BASE_URL = "http://192.168.1.7/bpsip/public/api/";
+
+    public static final String magang_file = "http://192.168.1.7/bpsip/public/app/Http/Controllers/MagangUpload.php";
+    public static final String BASE_URL = "http://192.168.1.7/bpsip_1/public/api/";
     private static Retrofit retrofit = null;
     public static Retrofit getApi() {
         if (retrofit == null) {

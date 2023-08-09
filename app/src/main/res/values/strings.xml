@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">BPSIP</string>
+    <string name="n_siswa">Nama Siswa/Mahasiswa</string>
+    <string name="n_nim">NIM</string>
+    <string name="n_univ">Sekolah/Universitas</string>
+    <string name="n_jurusan">Jurusan</string>
+    <string name="n_hape">Nomor Hape</string>
+    <string name="n_magang">Waktu Magang</string>
+    <string name="kirim">Kirim</string>
+    <string name="upload">Upload Surat Permohonan</string>
+    <string name="title_form">Silahkan Isi Form</string>
+    <string name="alamat">Alamat</string>
+    <string name="nama_pel">Nama Pelanggan</string>
+    <string name="institusi">Institusi</string>
+    <string name="nama">Nama</string>
+    <string name="nik">NIK(Nomor Induk Kependudukan)</string>
+    <string name="email">Email</string>
+    <string name="lingkup_analisis">Lingkup Analisis</string>
+    <string name="ruang_lingkup_analisis">Ruang Lingkup Analisis</string>
+    <string name="laboratorium_peralatan">Laboratorium Peralatan</string>
+    <string name="peralatan">Peralatan</string>
 </resources>

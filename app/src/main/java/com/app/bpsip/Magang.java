@@ -10,13 +10,19 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Magang extends AppCompatActivity {
 
+    ImageView form, info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_magang);
 
-        ImageView form = findViewById(R.id.tv2);
-        form.setOnClickListener(view -> startActivity(new Intent(Magang.this, RegMagang.class)));
+        form = findViewById(R.id.tv2);
+        form.setOnClickListener(view -> startActivity(new Intent(Magang.this, FormMagang.class)));
+
+        info = findViewById(R.id.imgInfo);
+        info.setOnClickListener(view -> startActivity(new Intent(Magang.this, MagangInfo.class)));
+
+
 
         BottomNavigationView botNavbar = findViewById(R.id.navbar_magang);
         botNavbar.setOnItemSelectedListener(item -> {

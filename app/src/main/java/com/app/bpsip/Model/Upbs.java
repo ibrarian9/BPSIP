@@ -11,8 +11,6 @@ public class Upbs {
     private String alamat;
     @SerializedName("upbs_nama_kelompok_tani")
     private String tani;
-    @SerializedName("upbs_jabatan")
-    private String jabatan;
     @SerializedName("upbs_luas_lahan")
     private String lahan;
     @SerializedName("upbs_komoditas")
@@ -26,12 +24,11 @@ public class Upbs {
 
     public Upbs(){}
 
-    public Upbs(String nama, String nik, String alamat, String tani, String jabatan, String lahan, String komoditas, String benih, String noHp, String surat) {
+    public Upbs(String nama, String nik, String alamat, String tani, String lahan, String komoditas, String benih, String noHp, String surat) {
         this.nama = nama;
         this.nik = nik;
         this.alamat = alamat;
         this.tani = tani;
-        this.jabatan = jabatan;
         this.lahan = lahan;
         this.komoditas = komoditas;
         this.benih = benih;
@@ -69,14 +66,6 @@ public class Upbs {
 
     public void setTani(String tani) {
         this.tani = tani;
-    }
-
-    public String getJabatan() {
-        return jabatan;
-    }
-
-    public void setJabatan(String jabatan) {
-        this.jabatan = jabatan;
     }
 
     public String getLahan() {

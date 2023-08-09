@@ -2,6 +2,7 @@ package com.app.bpsip;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,7 +14,8 @@ import android.widget.Toast;
 
 import com.app.bpsip.CallApi.ApiCall;
 import com.app.bpsip.CallApi.ApiEndpoint;
-import com.app.bpsip.Model.Konsul;
+
+import com.app.bpsip.Model.ResponseKonsul;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import retrofit2.Call;
@@ -25,7 +27,6 @@ public class Konsultasi extends AppCompatActivity {
     EditText edNama, edNik, edAlamat, edInstitusi, edEmail, edNoHp, edPesan;
     ApiEndpoint apiEndpoint;
     Button btnKirim;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,26 +45,46 @@ public class Konsultasi extends AppCompatActivity {
 
         btnKirim = findViewById(R.id.btnKirim);
         btnKirim.setOnClickListener(view -> {
-            Call<Konsul> postKonsulCall = apiEndpoint.postKonsul(edNama.getText().toString(), edNik.getText().toString(),
-                    edAlamat.getText().toString(), edInstitusi.getText().toString(), edEmail.getText().toString(),
-                    edNoHp.getText().toString(), edPesan.getText().length());
+            String nama = edNama.getText().toString();
+            String nik = edNik.getText().toString();
+            String alamat = edAlamat.getText().toString();
+            String institusi = edInstitusi.getText().toString();
+            String email = edEmail.getText().toString();
+            String noHp = edNoHp.getText().toString();
+            String pesan = edPesan.getText().toString();
 
-            postKonsulCall.enqueue(new Callback<Konsul>() {
-                @Override
-                public void onResponse(Call<Konsul> call, Response<Konsul> response) {
-                    Log.e(TAG, "onResponse: "+response.message());
-                    Log.e(TAG, "onResponse: "+response.code());
-                    Toast.makeText(getApplicationContext(),"Form Berhasil Di Kirim", Toast.LENGTH_LONG).show();
-                    finish();
-                }
+            if (nama.equals("")){
+                Toast.makeText(Konsultasi.this, "Nama Masih Kosong", Toast.LENGTH_SHORT).show();
+            } else if (nik.equals("")) {
+                Toast.makeText(Konsultasi.this, "Nik Masih Kosong", Toast.LENGTH_SHORT).show();
+            } else if (alamat.equals("")) {
+                Toast.makeText(Konsultasi.this, "Alamat Masih Kosong", Toast.LENGTH_SHORT).show();
+            } else if (institusi.equals("")) {
+                Toast.makeText(Konsultasi.this,"Institusi Masih Kosong", Toast.LENGTH_SHORT).show();
+            } else if (email.equals("")) {
+                Toast.makeText(Konsultasi.this, "Email Masih Kosong", Toast.LENGTH_SHORT).show();
+            } else if (noHp.equals("")) {
+                Toast.makeText(Konsultasi.this, "Nomor Hape Masih Kosong", Toast.LENGTH_SHORT).show();
+            } else if (pesan.equals("")) {
+                Toast.makeText(Konsultasi.this, "Pesan Masih Kosong", Toast.LENGTH_SHORT).show();
+            } else {
 
-                @Override
-                public void onFailure(Call<Konsul> call, Throwable t) {
-                    Log.e(TAG, "onFailure: "+t.getMessage());
-                    Log.e(TAG, "onFailure: "+t.getCause());
-                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
-                }
-            });
+                Call<ResponseKonsul> postKonsul = apiEndpoint.postKonsul(nama, nik, alamat, institusi, email, noHp, pesan);
+
+                postKonsul.enqueue(new Callback<ResponseKonsul>() {
+                    @Override
+                    public void onResponse(@NonNull Call<ResponseKonsul> call, @NonNull Response<ResponseKonsul> response) {
+                        Toast.makeText(getApplicationContext(),"Form Berhasil Di Kirim", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                    @Override
+                    public void onFailure(@NonNull Call<ResponseKonsul> call, @NonNull Throwable t) {
+                        Log.e(TAG, "onFailure: "+t.getMessage());
+                        Log.e(TAG, "onFailure: "+t.getCause());
+                        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         });
 
 

@@ -11,35 +11,18 @@
         android:id="@+id/rl1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/ly1"
-            android:background="@color/main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <ImageView
-                android:id="@+id/img1"
-                android:layout_marginStart="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:src="@drawable/logo2"/>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="60dp"/>
-
-            <ImageView
-                android:layout_marginEnd="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:src="@drawable/exit"/>
-
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/img1"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:src="@drawable/logo2"
+            android:contentDescription="@string/app_name" />
 
     </RelativeLayout>
 
@@ -143,6 +126,7 @@
         android:background="@color/white"
         app:itemIconTint="@color/main"
         app:itemTextColor="@color/main"
+        app:itemActiveIndicatorStyle="@color/white"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

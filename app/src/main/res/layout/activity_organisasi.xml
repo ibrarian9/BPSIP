@@ -12,38 +12,21 @@
         android:id="@+id/rl1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/ly1"
-            android:background="@color/main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <ImageView
-                android:id="@+id/img1"
-                android:layout_marginStart="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:src="@drawable/logo2"/>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="60dp"/>
-
-            <ImageView
-                android:layout_marginEnd="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:src="@drawable/exit"/>
-
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/img1"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:src="@drawable/logo2"
+            android:contentDescription="@string/app_name" />
 
     </RelativeLayout>
-
+    
     <TextView
         android:id="@+id/organisasi"
         android:layout_width="match_parent"
@@ -58,59 +41,72 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rl1"/>
-
-    <RelativeLayout
+    
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:padding="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/navbar"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@+id/navbar_organisasi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/organisasi">
 
-        <ImageView
-            android:id="@+id/profil"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/profil" />
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/struktur"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/profil"
-            android:layout_margin="10dp"
-            android:src="@drawable/struktur" />
+            <ImageView
+                android:id="@+id/profilBpsip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/profil" />
 
-        <ImageView
-            android:id="@+id/visi"
-            android:layout_below="@+id/struktur"
-            android:layout_margin="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/visi" />
+            <ImageView
+                android:id="@+id/struktur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profilBpsip"
+                android:layout_margin="10dp"
+                android:src="@drawable/struktur" />
 
-        <ImageView
-            android:id="@+id/tugas"
-            android:layout_margin="10dp"
-            android:layout_below="@+id/visi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/tugas" />
+            <ImageView
+                android:id="@+id/imgVisi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/struktur"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/visi" />
 
-        <ImageView
-            android:id="@+id/pemimpin"
-            android:layout_margin="10dp"
-            android:layout_below="@+id/tugas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/pimpinan" />
+            <ImageView
+                android:id="@+id/tugas"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/imgVisi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tugas" />
 
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/pemimpin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tugas"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/pimpinan" />
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navbar_organisasi"
@@ -119,6 +115,7 @@
         android:background="@color/white"
         app:itemIconTint="@color/main"
         app:itemTextColor="@color/main"
+        app:itemActiveIndicatorStyle="@color/white"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -10,13 +10,17 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Upbs extends AppCompatActivity {
 
+    ImageView formBenih, info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upbs);
 
-        ImageView formBenih = findViewById(R.id.help);
-        formBenih.setOnClickListener(view -> startActivity(new Intent(Upbs.this, RegBenihBantuan.class)));
+        formBenih = findViewById(R.id.help);
+        formBenih.setOnClickListener(view -> startActivity(new Intent(Upbs.this, FormBenihBantuan.class)));
+
+        info = findViewById(R.id.info);
+        info.setOnClickListener(view -> startActivity(new Intent(Upbs.this, UpbsInfo.class)));
 
         BottomNavigationView botNavbar = findViewById(R.id.navbar_upbs);
         botNavbar.setOnItemSelectedListener(item -> {
