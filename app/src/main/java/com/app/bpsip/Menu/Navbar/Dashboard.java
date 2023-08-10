@@ -1,37 +1,38 @@
-package com.app.bpsip;
+package com.app.bpsip.Menu.Navbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.app.bpsip.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Kontak extends AppCompatActivity {
+public class Dashboard extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kontak);
+        setContentView(R.layout.activity_dashboard);
 
-        BottomNavigationView botNavbar = findViewById(R.id.navbar_kontak);
-        botNavbar.setSelectedItemId(R.id.menu_kontak);
+        BottomNavigationView botNavbar = findViewById(R.id.navbar_dashboard);
+        botNavbar.setSelectedItemId(R.id.menu_home);
 
         botNavbar.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.menu_home) {
-                startActivity(new Intent(Kontak.this, Dashboard.class));
                 return true;
             } else if (itemId == R.id.menu_organisasi) {
-                startActivity(new Intent(Kontak.this, Organisasi.class));
+                startActivity(new Intent(Dashboard.this, Organisasi.class));
                 return true;
             } else if (itemId == R.id.menu_layanan) {
-                startActivity(new Intent(Kontak.this, Layanan.class));
+                startActivity(new Intent(Dashboard.this, Layanan.class));
                 return true;
             } else if (itemId == R.id.menu_agro) {
-                startActivity(new Intent(Kontak.this, Agrostandar.class));
+                startActivity(new Intent(Dashboard.this, Agrostandar.class));
                 return true;
             } else if (itemId == R.id.menu_kontak) {
+                startActivity(new Intent(Dashboard.this, Kontak.class));
                 return true;
             }
             return false;

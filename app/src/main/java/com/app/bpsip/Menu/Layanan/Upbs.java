@@ -1,4 +1,4 @@
-package com.app.bpsip;
+package com.app.bpsip.Menu.Layanan;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,15 +6,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.app.bpsip.Menu.Navbar.Agrostandar;
+import com.app.bpsip.Menu.Navbar.Dashboard;
+import com.app.bpsip.Menu.Upbs.FormBenihBantuan;
+import com.app.bpsip.Menu.Navbar.Kontak;
+import com.app.bpsip.Menu.Navbar.Layanan;
+import com.app.bpsip.Menu.Upbs.UpbsInfo;
+import com.app.bpsip.Menu.Upbs.UpbsStock;
+import com.app.bpsip.Menu.Navbar.Organisasi;
+import com.app.bpsip.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Upbs extends AppCompatActivity {
 
-    ImageView formBenih, info;
+    ImageView formBenih, info, stock;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upbs);
+
+        stock = findViewById(R.id.stock);
+        stock.setOnClickListener(view -> startActivity(new Intent(Upbs.this, UpbsStock.class)));
 
         formBenih = findViewById(R.id.help);
         formBenih.setOnClickListener(view -> startActivity(new Intent(Upbs.this, FormBenihBantuan.class)));

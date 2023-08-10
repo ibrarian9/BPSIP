@@ -1,17 +1,26 @@
-package com.app.bpsip;
+package com.app.bpsip.Menu.Layanan;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.app.bpsip.Menu.Navbar.Agrostandar;
+import com.app.bpsip.Menu.Navbar.Dashboard;
+import com.app.bpsip.Menu.Navbar.Kontak;
+import com.app.bpsip.Menu.Navbar.Layanan;
+import com.app.bpsip.Menu.Laboratorium.FormSample;
+import com.app.bpsip.Menu.Laboratorium.LabLingkup;
+import com.app.bpsip.Menu.Laboratorium.LabPeralatan;
+import com.app.bpsip.Menu.Laboratorium.LabTarif;
+import com.app.bpsip.Menu.Navbar.Organisasi;
+import com.app.bpsip.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Laboratorium extends AppCompatActivity {
 
-    ImageView lingkup, form;
+    ImageView lingkup, form, tarif, alat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +28,12 @@ public class Laboratorium extends AppCompatActivity {
 
         lingkup = findViewById(R.id.lingkup);
         lingkup.setOnClickListener(view -> startActivity(new Intent(Laboratorium.this, LabLingkup.class)));
+
+        tarif = findViewById(R.id.tv4);
+        tarif.setOnClickListener(view -> startActivity(new Intent(Laboratorium.this, LabTarif.class)));
+
+        alat = findViewById(R.id.tv3);
+        alat.setOnClickListener(view -> startActivity(new Intent(Laboratorium.this, LabPeralatan.class)));
 
         form = findViewById(R.id.tv5);
         form.setOnClickListener(view -> startActivity(new Intent(Laboratorium.this, FormSample.class)));

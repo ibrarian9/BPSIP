@@ -1,7 +1,8 @@
-package com.app.bpsip.Menu.Organisasi;
+package com.app.bpsip.Menu.Laboratorium;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.text.HtmlCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +15,7 @@ import com.app.bpsip.Menu.Navbar.Dashboard;
 import com.app.bpsip.Menu.Navbar.Kontak;
 import com.app.bpsip.Menu.Navbar.Layanan;
 import com.app.bpsip.Menu.Navbar.Organisasi;
-import com.app.bpsip.Model.ResponseOrganisasi;
+import com.app.bpsip.Model.ResponseLab;
 import com.app.bpsip.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -22,27 +23,27 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProfilBpsip extends AppCompatActivity {
+public class LabTarif extends AppCompatActivity {
 
-    TextView profil;
+    TextView tarif;
     ApiEndpoint api;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profil_bpsip);
+        setContentView(R.layout.activity_lab_tarif);
 
-        profil = findViewById(R.id.tvProfilBpsip);
         api = ApiCall.getApi().create(ApiEndpoint.class);
-        api.getData().enqueue(new Callback<ResponseOrganisasi>() {
+        api.getLab().enqueue(new Callback<ResponseLab>() {
             @Override
-            public void onResponse(@NonNull Call<ResponseOrganisasi> call, @NonNull Response<ResponseOrganisasi> response) {
+            public void onResponse(@NonNull Call<ResponseLab> call, @NonNull Response<ResponseLab> response) {
                 assert response.body() != null;
-                String profile = response.body().getHasil().getOrganisasiProfile();
-                profil.setText(profile);
+                String text = response.body().getHasil().getProfileLabTarif();
+                tarif = findViewById(R.id.tvTarif);
+                tarif.setText(HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_LEGACY));
             }
+
             @Override
-            public void onFailure(@NonNull Call<ResponseOrganisasi> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<ResponseLab> call, @NonNull Throwable t) {
 
             }
         });
@@ -68,6 +69,5 @@ public class ProfilBpsip extends AppCompatActivity {
             }
             return false;
         });
-
     }
 }

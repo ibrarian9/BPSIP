@@ -1,12 +1,14 @@
-package com.app.bpsip.Menu.Organisasi;
+package com.app.bpsip.Menu.Upbs;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 
+import com.app.bpsip.Adapter.StockAdapter;
 import com.app.bpsip.CallApi.ApiCall;
 import com.app.bpsip.CallApi.ApiEndpoint;
 import com.app.bpsip.Menu.Navbar.Agrostandar;
@@ -14,35 +16,47 @@ import com.app.bpsip.Menu.Navbar.Dashboard;
 import com.app.bpsip.Menu.Navbar.Kontak;
 import com.app.bpsip.Menu.Navbar.Layanan;
 import com.app.bpsip.Menu.Navbar.Organisasi;
-import com.app.bpsip.Model.ResponseOrganisasi;
+import com.app.bpsip.Model.ResponseStock;
 import com.app.bpsip.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProfilBpsip extends AppCompatActivity {
-
-    TextView profil;
+public class UpbsStock extends AppCompatActivity {
     ApiEndpoint api;
+    RecyclerView rv;
+    RecyclerView.LayoutManager lm;
+    StockAdapter stockAdapter;
+    List stock = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profil_bpsip);
+        setContentView(R.layout.activity_upbs_stock);
 
-        profil = findViewById(R.id.tvProfilBpsip);
+        // Set Recycler View
+        rv = findViewById(R.id.rvStock);
+        stockAdapter = new StockAdapter(stock, getApplicationContext());
+        lm = new LinearLayoutManager(UpbsStock.this);
+        rv.setLayoutManager(lm);
+        rv.setAdapter(stockAdapter);
+
         api = ApiCall.getApi().create(ApiEndpoint.class);
-        api.getData().enqueue(new Callback<ResponseOrganisasi>() {
+
+        api.getBenih().enqueue(new Callback<ResponseStock>() {
             @Override
-            public void onResponse(@NonNull Call<ResponseOrganisasi> call, @NonNull Response<ResponseOrganisasi> response) {
+            public void onResponse(@NonNull Call<ResponseStock> call, @NonNull Response<ResponseStock> response) {
                 assert response.body() != null;
-                String profile = response.body().getHasil().getOrganisasiProfile();
-                profil.setText(profile);
+                UpbsStock.this.stock = response.body().getHasil();
+                stockAdapter.setData(stock);
             }
             @Override
-            public void onFailure(@NonNull Call<ResponseOrganisasi> call, @NonNull Throwable t) {
+            public void onFailure(Call<ResponseStock> call, Throwable t) {
 
             }
         });
@@ -68,6 +82,5 @@ public class ProfilBpsip extends AppCompatActivity {
             }
             return false;
         });
-
     }
 }

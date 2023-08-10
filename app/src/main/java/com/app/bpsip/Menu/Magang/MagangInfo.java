@@ -1,10 +1,10 @@
-package com.app.bpsip.Menu.Organisasi;
+package com.app.bpsip.Menu.Magang;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.widget.TextView;
 
 import com.app.bpsip.CallApi.ApiCall;
@@ -14,7 +14,7 @@ import com.app.bpsip.Menu.Navbar.Dashboard;
 import com.app.bpsip.Menu.Navbar.Kontak;
 import com.app.bpsip.Menu.Navbar.Layanan;
 import com.app.bpsip.Menu.Navbar.Organisasi;
-import com.app.bpsip.Model.ResponseOrganisasi;
+import com.app.bpsip.Model.ResponseInfo;
 import com.app.bpsip.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -22,27 +22,28 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProfilBpsip extends AppCompatActivity {
+public class MagangInfo extends AppCompatActivity {
 
-    TextView profil;
+    TextView info;
     ApiEndpoint api;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profil_bpsip);
+        setContentView(R.layout.activity_magang_info);
 
-        profil = findViewById(R.id.tvProfilBpsip);
+        info = findViewById(R.id.tvMagangInfo);
         api = ApiCall.getApi().create(ApiEndpoint.class);
-        api.getData().enqueue(new Callback<ResponseOrganisasi>() {
+
+        api.getInfo().enqueue(new Callback<ResponseInfo>() {
             @Override
-            public void onResponse(@NonNull Call<ResponseOrganisasi> call, @NonNull Response<ResponseOrganisasi> response) {
+            public void onResponse(Call<ResponseInfo> call, Response<ResponseInfo> response) {
                 assert response.body() != null;
-                String profile = response.body().getHasil().getOrganisasiProfile();
-                profil.setText(profile);
+                String inf = response.body().getHasil().getInformasiMagang();
+                info.setText(Html.fromHtml(inf));
             }
+
             @Override
-            public void onFailure(@NonNull Call<ResponseOrganisasi> call, @NonNull Throwable t) {
+            public void onFailure(Call<ResponseInfo> call, Throwable t) {
 
             }
         });
@@ -68,6 +69,8 @@ public class ProfilBpsip extends AppCompatActivity {
             }
             return false;
         });
+
+
 
     }
 }

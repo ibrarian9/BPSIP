@@ -1,4 +1,4 @@
-package com.app.bpsip;
+package com.app.bpsip.Menu.Navbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import com.app.bpsip.Menu.Organisasi.PimpinanProfil;
 import com.app.bpsip.Menu.Organisasi.ProfilBpsip;
 
 import com.app.bpsip.Menu.Organisasi.VisiDanMisi;
+import com.app.bpsip.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Organisasi extends AppCompatActivity {

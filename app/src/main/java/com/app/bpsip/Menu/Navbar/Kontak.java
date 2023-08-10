@@ -1,37 +1,38 @@
-package com.app.bpsip;
+package com.app.bpsip.Menu.Navbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.app.bpsip.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Agrostandar extends AppCompatActivity {
+public class Kontak extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agrostandar);
+        setContentView(R.layout.activity_kontak);
 
-        BottomNavigationView botNavBar = findViewById(R.id.navbar_agro);
-        botNavBar.setSelectedItemId(R.id.menu_agro);
+        BottomNavigationView botNavbar = findViewById(R.id.navbar_kontak);
+        botNavbar.setSelectedItemId(R.id.menu_kontak);
 
-        botNavBar.setOnItemSelectedListener(item -> {
+        botNavbar.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.menu_home) {
-                startActivity(new Intent(Agrostandar.this, Dashboard.class));
+                startActivity(new Intent(Kontak.this, Dashboard.class));
                 return true;
             } else if (itemId == R.id.menu_organisasi) {
-                startActivity(new Intent(Agrostandar.this, Organisasi.class));
+                startActivity(new Intent(Kontak.this, Organisasi.class));
                 return true;
             } else if (itemId == R.id.menu_layanan) {
-                startActivity(new Intent(Agrostandar.this, Layanan.class));
+                startActivity(new Intent(Kontak.this, Layanan.class));
                 return true;
             } else if (itemId == R.id.menu_agro) {
+                startActivity(new Intent(Kontak.this, Agrostandar.class));
                 return true;
             } else if (itemId == R.id.menu_kontak) {
-                startActivity(new Intent(Agrostandar.this, Kontak.class));
                 return true;
             }
             return false;

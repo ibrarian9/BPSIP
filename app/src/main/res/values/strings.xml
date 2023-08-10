@@ -19,4 +19,7 @@
     <string name="ruang_lingkup_analisis">Ruang Lingkup Analisis</string>
     <string name="laboratorium_peralatan">Laboratorium Peralatan</string>
     <string name="peralatan">Peralatan</string>
+    <string name="tarif">Tarif</string>
+    <string name="stock_benih">Stock Benih</string>
+    <string name="jumlah_benih">Jumlah Benih</string>
 </resources>

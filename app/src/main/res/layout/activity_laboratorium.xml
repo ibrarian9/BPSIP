@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg2"
-    tools:context=".Laboratorium">
+    tools:context=".Menu.Layanan.Laboratorium">
 
     <RelativeLayout
         android:id="@+id/rl1"
@@ -92,10 +92,13 @@
 
             <ImageView
                 android:id="@+id/tv4"
-                android:layout_margin="10dp"
-                android:layout_below="@+id/tv3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/tv3"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/tv4" />
 

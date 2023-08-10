@@ -6,7 +6,7 @@
     android:background="@color/grey"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FormSample">
+    tools:context=".Menu.Laboratorium.FormSample">
 
     <RelativeLayout
         android:id="@+id/rl1"

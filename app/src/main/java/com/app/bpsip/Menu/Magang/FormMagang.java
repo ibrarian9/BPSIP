@@ -1,18 +1,13 @@
-package com.app.bpsip;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
+package com.app.bpsip.Menu.Magang;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import android.app.Activity;
 
 import android.content.Context;
 import android.content.Intent;
 
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,14 +15,19 @@ import android.os.Bundle;
 import android.os.Environment;
 
 import android.os.ParcelFileDescriptor;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.app.bpsip.Menu.Navbar.Agrostandar;
 import com.app.bpsip.CallApi.ApiCall;
 import com.app.bpsip.CallApi.ApiEndpoint;
+import com.app.bpsip.Menu.Navbar.Dashboard;
+import com.app.bpsip.Menu.Navbar.Kontak;
+import com.app.bpsip.Menu.Navbar.Layanan;
 import com.app.bpsip.Model.ResponseMagang;
+import com.app.bpsip.Menu.Navbar.Organisasi;
+import com.app.bpsip.R;
 import com.app.bpsip.Util.HttpFileUpload;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

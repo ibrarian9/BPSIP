@@ -9,6 +9,7 @@ import com.app.bpsip.Model.ResponseKonsul;
 import com.app.bpsip.Model.ResponseLabor;
 import com.app.bpsip.Model.ResponseMagang;
 import com.app.bpsip.Model.ResponsePimpinan;
+import com.app.bpsip.Model.ResponseStock;
 import com.app.bpsip.Model.ResponseUpbs;
 
 import retrofit2.Call;
@@ -30,6 +31,9 @@ public interface ApiEndpoint {
 
     @GET("profile_lab/getProfilelab")
     Call<ResponseLab> getLab();
+
+    @GET("stock_benih/all")
+    Call<ResponseStock> getBenih();
 
     @FormUrlEncoded
     @POST("laboratorium/store")

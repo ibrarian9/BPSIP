@@ -1,4 +1,4 @@
-package com.app.bpsip;
+package com.app.bpsip.Menu.Laboratorium;
 
 import static android.content.ContentValues.TAG;
 
@@ -12,10 +12,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.app.bpsip.Menu.Navbar.Agrostandar;
 import com.app.bpsip.CallApi.ApiCall;
 import com.app.bpsip.CallApi.ApiEndpoint;
 
+import com.app.bpsip.Menu.Navbar.Dashboard;
+import com.app.bpsip.Menu.Navbar.Kontak;
+import com.app.bpsip.Menu.Navbar.Layanan;
 import com.app.bpsip.Model.ResponseLabor;
+import com.app.bpsip.Menu.Navbar.Organisasi;
+import com.app.bpsip.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import retrofit2.Call;

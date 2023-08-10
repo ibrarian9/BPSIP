@@ -1,4 +1,4 @@
-package com.app.bpsip;
+package com.app.bpsip.Menu.Layanan;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.app.bpsip.Menu.Navbar.Agrostandar;
+import com.app.bpsip.Menu.Navbar.Dashboard;
+import com.app.bpsip.Menu.Navbar.Kontak;
+import com.app.bpsip.Menu.Navbar.Layanan;
+import com.app.bpsip.Menu.Magang.FormMagang;
+import com.app.bpsip.Menu.Magang.MagangInfo;
+import com.app.bpsip.Menu.Navbar.Organisasi;
+import com.app.bpsip.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Magang extends AppCompatActivity {

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg2"
-    tools:context=".Upbs">
+    tools:context=".Menu.Layanan.Upbs">
 
     <RelativeLayout
         android:id="@+id/rl1"
@@ -59,7 +59,10 @@
                 android:id="@+id/stock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
                 android:src="@drawable/upbs_1" />
 
             <ImageView

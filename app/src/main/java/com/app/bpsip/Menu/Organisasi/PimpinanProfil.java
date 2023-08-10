@@ -3,6 +3,7 @@ package com.app.bpsip.Menu.Organisasi;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -30,6 +31,7 @@ public class PimpinanProfil extends AppCompatActivity {
 
         api = ApiCall.getApi().create(ApiEndpoint.class);
         api.getProfil().enqueue(new Callback<ResponsePimpinan>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(@NonNull Call<ResponsePimpinan> call, @NonNull Response<ResponsePimpinan> response) {
                 assert response.body() != null;

@@ -1,4 +1,4 @@
-package com.app.bpsip;
+package com.app.bpsip.Menu.Navbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.app.bpsip.Menu.Layanan.Konsultasi;
+import com.app.bpsip.Menu.Layanan.Kunjungan;
+import com.app.bpsip.Menu.Layanan.Laboratorium;
+import com.app.bpsip.Menu.Layanan.Magang;
+import com.app.bpsip.Menu.Layanan.Upbs;
+import com.app.bpsip.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Layanan extends AppCompatActivity {
