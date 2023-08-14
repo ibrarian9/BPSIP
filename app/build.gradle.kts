@@ -33,6 +33,7 @@ android {
 
 dependencies {
 
+    //noinspection GradleCompatible
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
@@ -46,4 +47,11 @@ dependencies {
 
     // Circle Image
     implementation("de.hdodenhof:circleimageview:3.1.0")
+
+    // Picasso Image
+    implementation("com.squareup.picasso:picasso:2.8")
+
+    // Dexter
+    implementation("com.karumi:dexter:6.2.3")
+
 }

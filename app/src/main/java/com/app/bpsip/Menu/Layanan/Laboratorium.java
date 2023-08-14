@@ -15,16 +15,20 @@ import com.app.bpsip.Menu.Laboratorium.LabLingkup;
 import com.app.bpsip.Menu.Laboratorium.LabPeralatan;
 import com.app.bpsip.Menu.Laboratorium.LabTarif;
 import com.app.bpsip.Menu.Navbar.Organisasi;
+import com.app.bpsip.Menu.Organisasi.StrukturBpsip;
 import com.app.bpsip.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Laboratorium extends AppCompatActivity {
 
-    ImageView lingkup, form, tarif, alat;
+    ImageView lingkup, form, tarif, alat, struktur;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laboratorium);
+
+        struktur = findViewById(R.id.tv2);
+        struktur.setOnClickListener(view -> startActivity(new Intent(Laboratorium.this, StrukturBpsip.class)));
 
         lingkup = findViewById(R.id.lingkup);
         lingkup.setOnClickListener(view -> startActivity(new Intent(Laboratorium.this, LabLingkup.class)));

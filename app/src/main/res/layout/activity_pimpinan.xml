@@ -67,6 +67,7 @@
                 android:textStyle="bold" />
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_marginTop="20dp"
                 android:id="@+id/imgProfil"
                 android:layout_below="@+id/tvKontak"
                 android:layout_centerHorizontal="true"
@@ -113,9 +114,6 @@
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
-
-
-
         </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>
@@ -133,6 +131,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/navbar_menu" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

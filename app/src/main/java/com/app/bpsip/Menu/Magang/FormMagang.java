@@ -1,12 +1,16 @@
 package com.app.bpsip.Menu.Magang;
 
-import androidx.annotation.Nullable;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+
 
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -15,9 +19,12 @@ import android.os.Bundle;
 import android.os.Environment;
 
 import android.os.ParcelFileDescriptor;
+
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 
 import com.app.bpsip.Menu.Navbar.Agrostandar;
 import com.app.bpsip.CallApi.ApiCall;
@@ -31,6 +38,7 @@ import com.app.bpsip.R;
 import com.app.bpsip.Util.HttpFileUpload;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileDescriptor;
@@ -39,6 +47,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -50,31 +59,36 @@ import retrofit2.Response;
 
 public class FormMagang extends AppCompatActivity {
 
-    public static final String PDF_DIR = "bpsip";
+    public static final String PDF_DIR = "bpsip/magang";
     public static final String DATE_FORMAT = "yyyyMMdd_HHmmss";
     private Boolean upflag = false;
     EditText edNama, edNim, edSekolah, edJurusan, edNoHp, edWaktu;
     ApiEndpoint apiEndpoint;
     Button btnKirim, btnUploadFile;
-    String fileName;
-    String pdfName;
-    File dFile, sfile, file;
+    public String pdfName, fName;
+    private File dFile, sFile, file;
+    ActivityResultLauncher<Intent> resultLauncher;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg_magang);
 
-        file = new File(Environment.getExternalStorageDirectory() + "/" + PDF_DIR);
-        if (!file.exists()){
+        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+        file = new File(path + "/" + PDF_DIR);
+        if (!file.exists()) {
             file.mkdirs();
+            Log.d("Dir", "Directory Created");
+        } else {
+            Log.e("Dir", "Dir Not Created");
         }
 
         SimpleDateFormat dateFormat = new SimpleDateFormat(
                 DATE_FORMAT, Locale.US);
 
         Date currentTime = Calendar.getInstance().getTime();
-        pdfName = "Magang" + dateFormat.format(currentTime) + ".pdf" ;
+        pdfName = "magang_" + dateFormat.format(currentTime) + ".pdf";
 
         edNama = findViewById(R.id.magangNama);
         edNim = findViewById(R.id.magangNim);
@@ -86,16 +100,11 @@ public class FormMagang extends AppCompatActivity {
         apiEndpoint = ApiCall.getApi().create(ApiEndpoint.class);
 
         btnUploadFile = findViewById(R.id.uploadFile);
-        btnUploadFile.setOnClickListener(view -> {
-            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType("application/pdf");
-            startActivityForResult(Intent.createChooser(intent,"Pilih File"), 102);
-        });
 
         btnKirim = findViewById(R.id.send);
         btnKirim.setOnClickListener(view -> {
 
-            String mFile = pdfName;
+            final String mFile = pdfName;
             String nama = edNama.getText().toString();
             String nim = edNim.getText().toString();
             String sekolah = edSekolah.getText().toString();
@@ -122,8 +131,8 @@ public class FormMagang extends AppCompatActivity {
 
                 postMagang.enqueue(new Callback<ResponseMagang>() {
                     @Override
-                    public void onResponse(Call<ResponseMagang> call, Response<ResponseMagang> response) {
-                        if (response.isSuccessful()){
+                    public void onResponse(@NonNull Call<ResponseMagang> call, @NonNull Response<ResponseMagang> response) {
+                        if (response.isSuccessful()) {
                             new UploadFile().execute();
                             Toast.makeText(getApplicationContext(), "Form Berhasil Di Kirim", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(FormMagang.this, Layanan.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -135,12 +144,51 @@ public class FormMagang extends AppCompatActivity {
                         }
                     }
                     @Override
-                    public void onFailure(Call<ResponseMagang> call, Throwable t) {
+                    public void onFailure(@NonNull Call<ResponseMagang> call, @NonNull Throwable t) {
+                        Log.d("Form Gagal", "onFailure: " + t.getCause() + t.getMessage());
                         Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         });
+
+        btnUploadFile.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("application/pdf");
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            resultLauncher.launch(Intent.createChooser(intent, "Pilih File PDF..."));
+        });
+
+        resultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(), result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+
+                        if (data != null) {
+                            upflag = true;
+
+                            Uri uriFile = data.getData();
+                            sFile = new File(getPathFromUri(uriFile));
+
+                            fName = pdfName;
+
+                            dFile = new File(file, fName);
+
+                            try {
+                                dFile.createNewFile();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            try {
+                                copyFile(sFile, dFile);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+        );
 
         BottomNavigationView botNavbar = findViewById(R.id.navbar_regMagang);
         botNavbar.setOnItemSelectedListener(item -> {
@@ -165,46 +213,22 @@ public class FormMagang extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == 102) {
-            if (resultCode == Activity.RESULT_OK){
-                upflag = true;
-
-                Uri fileUri = data.getData();
-
-                sfile = new File(getPathSourceFile(fileUri));
-                fileName = pdfName;
-
-                dFile = new File(file, fileName);
-
-                try {
-                    copyFile(dFile, sfile);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
     class UploadFile extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... strings) {
             try {
                 FileInputStream input = new FileInputStream(dFile);
-                HttpFileUpload hfu = new HttpFileUpload(ApiCall.magang_file, "ftitle", "fdescription", fileName);
+                HttpFileUpload hfu = new HttpFileUpload(ApiCall.magang_file, "ftitle", "fdescription", pdfName);
                 upflag = hfu.Send_Now(input);
-
-            } catch (FileNotFoundException e){
+            } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
             return null;
         }
 
-        protected void onPostExecute(String s){
-            if (upflag){
+        protected void onPostExecute(String s) {
+            if (upflag) {
                 finish();
             } else {
                 Toast.makeText(getApplicationContext(), "Sayang File Tidak Bisa Di Upload...", Toast.LENGTH_SHORT).show();
@@ -212,64 +236,67 @@ public class FormMagang extends AppCompatActivity {
         }
     }
 
-    private String getPathSourceFile(Uri fileUri) {
-        if (fileUri == null)
+    public String getPathFromUri(Uri uriFile) {
+        if (uriFile == null)
             return null;
 
         FileInputStream input = null;
         FileOutputStream output = null;
         try {
-            ParcelFileDescriptor pfd = getContentResolver().openFileDescriptor(fileUri, "file");
+            ParcelFileDescriptor pfd = getContentResolver().openFileDescriptor(uriFile, "r");
             FileDescriptor fd = pfd.getFileDescriptor();
             input = new FileInputStream(fd);
 
-            String tempFIle = getTempFileName(this);
-            output = new FileOutputStream(tempFIle);
+            String tempFilename = getTempFilename(this);
+            output = new FileOutputStream(tempFilename);
 
-            return tempFIle;
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            int read;
+            byte[] bytes = new byte[1024];
+            while ((read = input.read(bytes)) != -1) {
+                output.write(bytes, 0, read);
+            }
+            return tempFilename;
+        } catch (IOException ignored) {
+            // Nothing we can do
         } finally {
             closeSilently(input);
             closeSilently(output);
         }
+        return null;
     }
 
-    private void closeSilently(Closeable c) {
+    public static void closeSilently(Closeable c) {
         if (c == null)
             return;
         try {
             c.close();
-        } catch (Throwable ignored){
-
+        } catch (Throwable t) {
+            // Do nothing
         }
     }
 
-    private String getTempFileName(Context context) throws IOException {
+    private static String getTempFilename(Context context) throws IOException {
         File outputDir = context.getCacheDir();
-        File outputFile = File.createTempFile("File", "tmp", outputDir);
+        File outputFile = File.createTempFile("file", "tmp", outputDir);
         return outputFile.getAbsolutePath();
     }
 
-    private void copyFile(File sfile, File dFile) throws IOException {
-        if (!dFile.exists()){
-            return;
+    private void copyFile(File sFile, File dFile) throws IOException {
+        if (!sFile.exists()) {
+            Log.e("cFile", "Sfile not Exist");
         }
-
-        FileChannel sour;
-        FileChannel dest;
-
-        sour = new FileOutputStream(dFile).getChannel();
-        dest = new FileOutputStream(sfile).getChannel();
-        if (dest != null){
-            dest.transferFrom(sour, 0, sour.size());
+        FileChannel source;
+        FileChannel destination;
+        source = new FileInputStream(sFile).getChannel();
+        destination = new FileOutputStream(dFile).getChannel();
+        if (destination != null && source != null) {
+            destination.transferFrom(source, 0, source.size());
         }
-        if (sour != null){
-            sour.close();
+        if (source != null) {
+            source.close();
         }
-        if (dest != null){
-            dest.close();
+        if (destination != null) {
+            destination.close();
         }
     }
 }

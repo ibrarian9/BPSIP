@@ -22,4 +22,8 @@
     <string name="tarif">Tarif</string>
     <string name="stock_benih">Stock Benih</string>
     <string name="jumlah_benih">Jumlah Benih</string>
+    <string name="tugas_dan_fugsi">Tugas dan Fugsi</string>
+    <string name="struktur_organisasi">Struktur Organisasi</string>
+    <string name="struktur">Struktur</string>
+    <string name="dashboard">Dashboard</string>
 </resources>

@@ -175,6 +175,7 @@
                 android:layout_marginBottom="10dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
+                android:inputType="phone"
                 android:background="@color/white"
                 android:hint="@string/n_hape"
                 android:textSize="20sp" />

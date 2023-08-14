@@ -33,7 +33,7 @@
         android:background="@color/white"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
-        android:text="Tugas Dan Fungsi"
+        android:text="@string/tugas_dan_fugsi"
         android:textColor="@color/main"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -60,14 +60,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="Profil"
+                android:text="@string/tugas_dan_fugsi"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvProfilBpsip"
+                android:id="@+id/tvTugas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvKontak"
@@ -76,7 +76,7 @@
                 android:paddingTop="10dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="10dp"
-                android:text="profil"
+                android:text="Tugas"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
