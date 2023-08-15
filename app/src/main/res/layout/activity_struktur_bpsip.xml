@@ -70,8 +70,10 @@
                 android:id="@+id/imgStruktur"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:layout_width="250dp"
+                android:layout_width="320dp"
                 android:layout_height="200dp"
+                android:scaleType="fitXY"
+                android:background="@color/main"
                 android:layout_below="@+id/tvKontak"
                 android:contentDescription="@string/app_name" />
 

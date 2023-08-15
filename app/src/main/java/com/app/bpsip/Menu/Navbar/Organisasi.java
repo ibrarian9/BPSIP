@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.app.bpsip.Menu.Organisasi.PimpinanProfil;
 import com.app.bpsip.Menu.Organisasi.ProfilBpsip;
 
+import com.app.bpsip.Menu.Organisasi.StrukturBpsip;
 import com.app.bpsip.Menu.Organisasi.TugasDanFungsi;
 import com.app.bpsip.Menu.Organisasi.VisiDanMisi;
 import com.app.bpsip.R;
@@ -16,11 +17,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Organisasi extends AppCompatActivity {
 
-    ImageView pimpinan, profile, visiDanMisi, tugas;
+    ImageView pimpinan, profile, visiDanMisi, tugas, struktur;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organisasi);
+
+        struktur = findViewById(R.id.struktur);
+        struktur.setOnClickListener(view -> startActivity(new Intent(Organisasi.this, StrukturBpsip.class)));
 
         tugas = findViewById(R.id.tugas);
         tugas.setOnClickListener(view -> startActivity(new Intent(Organisasi.this, TugasDanFungsi.class)));
