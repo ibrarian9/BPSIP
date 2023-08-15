@@ -87,10 +87,13 @@
 
             <ImageView
                 android:id="@+id/tugas"
-                android:layout_margin="10dp"
-                android:layout_below="@+id/imgVisi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/imgVisi"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/tugas" />
 
             <ImageView

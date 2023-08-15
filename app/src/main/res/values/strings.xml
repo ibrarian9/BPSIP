@@ -26,4 +26,7 @@
     <string name="struktur_organisasi">Struktur Organisasi</string>
     <string name="struktur">Struktur</string>
     <string name="dashboard">Dashboard</string>
+    <string name="taman_agrostandar">Taman Agrostandar</string>
+    <string name="perpustakaan">Perpustakaan</string>
+    <string name="instalasi_pengujian_dan_penerapan_standar">Instalasi Pengujian dan Penerapan Standar Instrumen Pertanian</string>
 </resources>

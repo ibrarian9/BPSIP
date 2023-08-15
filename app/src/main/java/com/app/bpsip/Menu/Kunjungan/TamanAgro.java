@@ -1,4 +1,4 @@
-package com.app.bpsip.Menu.Laboratorium;
+package com.app.bpsip.Menu.Kunjungan;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +15,7 @@ import com.app.bpsip.Menu.Navbar.Dashboard;
 import com.app.bpsip.Menu.Navbar.Kontak;
 import com.app.bpsip.Menu.Navbar.Layanan;
 import com.app.bpsip.Menu.Navbar.Organisasi;
-import com.app.bpsip.Model.ResponseLab;
+import com.app.bpsip.Model.ResponseKunjungan;
 import com.app.bpsip.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -23,28 +23,27 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LabLingkup extends AppCompatActivity {
+public class TamanAgro extends AppCompatActivity {
 
-    TextView lingkup;
+    TextView tvTaman;
     ApiEndpoint api;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lab_lingkup);
+        setContentView(R.layout.activity_taman_agro);
 
-        lingkup = findViewById(R.id.tvLingkup);
+        tvTaman = findViewById(R.id.tvTamanInfo);
 
         api = ApiCall.getApi().create(ApiEndpoint.class);
-
-        api.getLab().enqueue(new Callback<ResponseLab>() {
+        api.getKunjungan().enqueue(new Callback<ResponseKunjungan>() {
             @Override
-            public void onResponse(@NonNull Call<ResponseLab> call, @NonNull Response<ResponseLab> response) {
+            public void onResponse(@NonNull Call<ResponseKunjungan> call, @NonNull Response<ResponseKunjungan> response) {
                 assert response.body() != null;
-                String text = response.body().getHasil().getProfileLabRuangLingkup();
-                lingkup.setText(HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_LEGACY));
+                String text = response.body().getKunjungan().getKunjunganTamanAgrostandar();
+                tvTaman.setText(HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_LEGACY));
             }
             @Override
-            public void onFailure(@NonNull Call<ResponseLab> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<ResponseKunjungan> call, @NonNull Throwable t) {
 
             }
         });

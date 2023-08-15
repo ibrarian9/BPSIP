@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.bpsip.Model.Stock;
 import com.app.bpsip.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> {
@@ -37,8 +37,8 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull StockAdapter.ViewHolder holder, int position) {
         Stock stock = benih.get(position);
 
-        holder.benih.setText(stock.getStockBenihNama());
-        holder.jumlah.setText(stock.getStockBenihJumlah());
+        holder.benih.setText(HtmlCompat.fromHtml(stock.getStockBenihNama(), HtmlCompat.FROM_HTML_MODE_LEGACY));
+        holder.jumlah.setText(HtmlCompat.fromHtml(stock.getStockBenihJumlah(), HtmlCompat.FROM_HTML_MODE_LEGACY));
     }
 
     @Override

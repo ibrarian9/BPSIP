@@ -56,7 +56,7 @@ public class UpbsStock extends AppCompatActivity {
                 stockAdapter.setData(stock);
             }
             @Override
-            public void onFailure(Call<ResponseStock> call, Throwable t) {
+            public void onFailure(@NonNull Call<ResponseStock> call, @NonNull Throwable t) {
 
             }
         });

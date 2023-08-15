@@ -2,6 +2,7 @@ package com.app.bpsip.Menu.Organisasi;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.text.HtmlCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,7 +40,7 @@ public class ProfilBpsip extends AppCompatActivity {
             public void onResponse(@NonNull Call<ResponseOrganisasi> call, @NonNull Response<ResponseOrganisasi> response) {
                 assert response.body() != null;
                 String profile = response.body().getHasil().getOrganisasiProfile();
-                profil.setText(profile);
+                profil.setText(HtmlCompat.fromHtml(profile, HtmlCompat.FROM_HTML_MODE_LEGACY));
             }
             @Override
             public void onFailure(@NonNull Call<ResponseOrganisasi> call, @NonNull Throwable t) {

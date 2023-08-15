@@ -39,29 +39,6 @@ public class FormSample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg_sample);
 
-        // Bot Navbar
-        BottomNavigationView botNavbar = findViewById(R.id.navbar_sample);
-        botNavbar.setOnItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.menu_home) {
-                startActivity(new Intent(FormSample.this, Dashboard.class));
-                return true;
-            } else if (itemId == R.id.menu_organisasi) {
-                startActivity(new Intent(FormSample.this, Organisasi.class));
-                return true;
-            } else if (itemId == R.id.menu_layanan) {
-                startActivity(new Intent(FormSample.this, Layanan.class));
-                return true;
-            } else if (itemId == R.id.menu_agro) {
-                startActivity(new Intent(FormSample.this, Agrostandar.class));
-                return true;
-            } else if (itemId == R.id.menu_kontak) {
-                startActivity(new Intent(FormSample.this, Kontak.class));
-                return true;
-            }
-            return false;
-        });
-
         // Get Id
         edNama = findViewById(R.id.labNama);
         edAlamat = findViewById(R.id.labAlamat);
@@ -108,6 +85,29 @@ public class FormSample extends AppCompatActivity {
                     }
                 });
             }
+        });
+
+        // Bot Navbar
+        BottomNavigationView botNavbar = findViewById(R.id.navbar_sample);
+        botNavbar.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.menu_home) {
+                startActivity(new Intent(FormSample.this, Dashboard.class));
+                return true;
+            } else if (itemId == R.id.menu_organisasi) {
+                startActivity(new Intent(FormSample.this, Organisasi.class));
+                return true;
+            } else if (itemId == R.id.menu_layanan) {
+                startActivity(new Intent(FormSample.this, Layanan.class));
+                return true;
+            } else if (itemId == R.id.menu_agro) {
+                startActivity(new Intent(FormSample.this, Agrostandar.class));
+                return true;
+            } else if (itemId == R.id.menu_kontak) {
+                startActivity(new Intent(FormSample.this, Kontak.class));
+                return true;
+            }
+            return false;
         });
     }
 }

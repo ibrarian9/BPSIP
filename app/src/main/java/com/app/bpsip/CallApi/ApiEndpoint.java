@@ -3,6 +3,7 @@ package com.app.bpsip.CallApi;
 
 
 import com.app.bpsip.Model.ResponseInfo;
+import com.app.bpsip.Model.ResponseKunjungan;
 import com.app.bpsip.Model.ResponseLab;
 import com.app.bpsip.Model.ResponseOrganisasi;
 import com.app.bpsip.Model.ResponseKonsul;
@@ -34,6 +35,9 @@ public interface ApiEndpoint {
 
     @GET("stock_benih/all")
     Call<ResponseStock> getBenih();
+
+    @GET("kunjungan/getKunjungan")
+    Call<ResponseKunjungan> getKunjungan();
 
     @FormUrlEncoded
     @POST("laboratorium/store")
