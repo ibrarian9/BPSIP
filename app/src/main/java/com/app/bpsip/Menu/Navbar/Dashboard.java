@@ -4,10 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.app.bpsip.R;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Dashboard extends AppCompatActivity {
@@ -23,8 +24,8 @@ public class Dashboard extends AppCompatActivity {
 
         tv1 = findViewById(R.id.tv1);
         tv2 = findViewById(R.id.tv2);
-        tv1.startAnimation(AnimationUtils.loadAnimation(this,R.anim.pulse));
-        tv2.startAnimation(AnimationUtils.loadAnimation(this,R.anim.pulse));
+        YoYo.with(Techniques.Flash).duration(700).repeat(5).playOn(tv1);
+        YoYo.with(Techniques.Flash).duration(700).repeat(5).playOn(tv2);
 
         botNavbar.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();

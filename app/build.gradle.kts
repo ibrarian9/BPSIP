@@ -54,4 +54,7 @@ dependencies {
     // Dexter
     implementation("com.karumi:dexter:6.2.3")
 
+    // Anim
+    implementation("com.daimajia.androidanimations:library:2.4@aar")
+
 }
