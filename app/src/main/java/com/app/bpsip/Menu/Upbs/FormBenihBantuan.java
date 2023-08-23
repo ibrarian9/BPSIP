@@ -54,7 +54,7 @@ public class FormBenihBantuan extends AppCompatActivity {
     public static final String PDF_DIR = "bpsip/bibit";
     public static final String DATE_FORMAT = "yyyyMMdd_HHmmss";
     private Boolean upflag = false;
-    EditText edNama, edNik, edAlamat, edKelTani, edLuasLahan, edKomoditas, edBenih, edNoHp;
+    EditText edNama, edNik, edAlamat, edKelTani, edJabatan ,edLuasLahan, edKomoditas, edBenih, edNoHp;
     ApiEndpoint apiEndpoint;
     String pdfName, fName;
     Button btnSend, btnUpload;
@@ -85,6 +85,7 @@ public class FormBenihBantuan extends AppCompatActivity {
         edNik = findViewById(R.id.nik);
         edAlamat = findViewById(R.id.alamat);
         edKelTani = findViewById(R.id.tani);
+        edJabatan = findViewById(R.id.jabatan);
         edLuasLahan = findViewById(R.id.lahan);
         edKomoditas = findViewById(R.id.komoditas);
         edBenih = findViewById(R.id.benih);
@@ -100,6 +101,7 @@ public class FormBenihBantuan extends AppCompatActivity {
             String nik = edNik.getText().toString();
             String alamat = edAlamat.getText().toString();
             String klmp_tani = edKelTani.getText().toString();
+            String jabatan = edJabatan.getText().toString();
             String lahan = edLuasLahan.getText().toString();
             String komoditas = edKomoditas.getText().toString();
             String benih = edBenih.getText().toString();
@@ -115,6 +117,8 @@ public class FormBenihBantuan extends AppCompatActivity {
                 Toast.makeText(FormBenihBantuan.this, "Alamat Masih Kosong", Toast.LENGTH_SHORT).show();
             } else if (klmp_tani.equals("")) {
                 Toast.makeText(FormBenihBantuan.this, "Nama Kelompok Tani Masih Kosong", Toast.LENGTH_SHORT).show();
+            } else if (jabatan.equals("")) {
+                Toast.makeText(FormBenihBantuan.this, "Jabatan Masih Kosong", Toast.LENGTH_SHORT).show();
             } else if (lahan.equals("")) {
                 Toast.makeText(FormBenihBantuan.this, "Luas Kepemilikan Lahan Masih Kosong", Toast.LENGTH_SHORT).show();
             } else if (komoditas.equals("")) {
@@ -124,7 +128,7 @@ public class FormBenihBantuan extends AppCompatActivity {
             } else if (noHp.equals("")) {
                 Toast.makeText(FormBenihBantuan.this, "Nomor Hape Masih Kosong", Toast.LENGTH_SHORT).show();
             } else {
-                Call<ResponseUpbs> postUpbsCall = apiEndpoint.postUpbs(nama, nik, alamat, klmp_tani, lahan, komoditas, benih, noHp, mFile);
+                Call<ResponseUpbs> postUpbsCall = apiEndpoint.postUpbs(nama, nik, alamat, klmp_tani, jabatan ,lahan, komoditas, benih, noHp, mFile);
 
                 postUpbsCall.enqueue(new Callback<ResponseUpbs>() {
                     @Override

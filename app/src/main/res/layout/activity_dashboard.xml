@@ -78,6 +78,7 @@
             android:text="@string/dashboard"/>
 
         <TextView
+            android:id="@+id/pengunjung"
             android:layout_marginTop="80dp"
             android:layout_marginStart="20dp"
             android:layout_below="@+id/tvDash"

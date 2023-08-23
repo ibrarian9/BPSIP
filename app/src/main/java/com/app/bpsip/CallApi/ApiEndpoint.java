@@ -71,6 +71,7 @@ public interface ApiEndpoint {
                                 @Field("upbs_nik") String nik,
                                 @Field("upbs_alamat") String alamat,
                                 @Field("upbs_nama_kelompok_tani") String tani,
+                                @Field("upbs_jabatan") String jabatan,
                                 @Field("upbs_luas_lahan") String lahan,
                                 @Field("upbs_komoditas") String komoditas,
                                 @Field("upbs_kebutuhan_benih") String benih,

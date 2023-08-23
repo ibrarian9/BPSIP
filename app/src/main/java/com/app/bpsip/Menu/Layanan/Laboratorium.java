@@ -26,6 +26,7 @@ public class Laboratorium extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laboratorium);
+        
 
         struktur = findViewById(R.id.tv2);
         struktur.setOnClickListener(view -> startActivity(new Intent(Laboratorium.this, StrukturBpsip.class)));
