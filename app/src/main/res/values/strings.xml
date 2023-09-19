@@ -13,7 +13,7 @@
     <string name="nama_pel">Nama Pelanggan</string>
     <string name="institusi">Institusi</string>
     <string name="nama">Nama</string>
-    <string name="nik">NIK(Nomor Induk Kependudukan)</string>
+    <string name="nik">NIK (Nomor Induk Kependudukan)</string>
     <string name="email">Email</string>
     <string name="lingkup_analisis">Lingkup Analisis</string>
     <string name="ruang_lingkup_analisis">Ruang Lingkup Analisis</string>
@@ -29,4 +29,11 @@
     <string name="taman_agrostandar">Taman Agrostandar</string>
     <string name="perpustakaan">Perpustakaan</string>
     <string name="instalasi_pengujian_dan_penerapan_standar">Instalasi Pengujian dan Penerapan Standar Instrumen Pertanian</string>
+    <string name="pengaduan">Pengaduan</string>
+    <string name="pilih_foto">Pilih Foto</string>
+    <string name="nomor_hp">Nomor HP</string>
+    <string name="uraian">Uraian</string>
+    <string name="link_fb">https://www.facebook.com/profile.php?id=100090443922393</string>
+    <string name="link_yt">https://www.youtube.com/@bsipriauchannel</string>
+    <string name="bsip">BSIP RIAU</string>
 </resources>

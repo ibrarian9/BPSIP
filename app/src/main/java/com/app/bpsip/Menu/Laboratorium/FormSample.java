@@ -5,7 +5,10 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Intent;
+
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -24,6 +27,7 @@ import com.app.bpsip.Menu.Navbar.Organisasi;
 import com.app.bpsip.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,6 +37,7 @@ public class FormSample extends AppCompatActivity {
     EditText edNama, edInstansi, edAlamat, edNoHp, edSample;
     Button btnSend;
     ApiEndpoint apiEndpoint;
+    String nama, alamat, instansi, noHp, sample;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,36 +56,36 @@ public class FormSample extends AppCompatActivity {
         btnSend = findViewById(R.id.btnSend);
         btnSend.setOnClickListener(view -> {
 
-            String nama = edNama.getText().toString();
-            String alamat = edAlamat.getText().toString();
-            String instansi = edInstansi.getText().toString();
-            String noHp = edNoHp.getText().toString();
-            String sample = edSample.getText().toString();
+            nama = edNama.getText().toString();
+            alamat = edAlamat.getText().toString();
+            instansi = edInstansi.getText().toString();
+            noHp = edNoHp.getText().toString();
+            sample = edSample.getText().toString();
 
-            if (nama.equals("")){
+            if (nama.equals("")) {
                 Toast.makeText(FormSample.this, "Nama Masih Kosong", Toast.LENGTH_SHORT).show();
-            } else if (alamat.equals("")){
+            } else if (alamat.equals("")) {
                 Toast.makeText(FormSample.this, "Alamat Masih Kosong", Toast.LENGTH_SHORT).show();
-            } else if (instansi.equals("")){
+            } else if (instansi.equals("")) {
                 Toast.makeText(FormSample.this, "Instansi Masih Kosong", Toast.LENGTH_SHORT).show();
-            } else if (noHp.equals("")){
+            } else if (noHp.equals("")) {
                 Toast.makeText(FormSample.this, "Nomor Hape Masih Kosong", Toast.LENGTH_SHORT).show();
-            } else if (sample.equals("")){
+            } else if (sample.equals("")) {
                 Toast.makeText(FormSample.this, "Sample Masih Kosong", Toast.LENGTH_SHORT).show();
             } else {
                 Call<ResponseLabor> postLabor = apiEndpoint.postLabor(nama, alamat, instansi, noHp, sample);
                 postLabor.enqueue(new Callback<ResponseLabor>() {
                     @Override
                     public void onResponse(@NonNull Call<ResponseLabor> call, @NonNull Response<ResponseLabor> response) {
-                        Toast.makeText(getApplicationContext(),"Form Berhasil Di Kirim", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(FormSample.this, Layanan.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        finish();
+                        if (response.isSuccessful()) {
+                            sendToWa();
+                            finish();
+                        }
                     }
                     @Override
                     public void onFailure(@NonNull Call<ResponseLabor> call, @NonNull Throwable t) {
-                        Log.e(TAG, "onFailure: "+t.getMessage());
-                        Log.e(TAG, "onFailure: "+t.getCause());
+                        Log.e(TAG, "onFailure: " + t.getMessage());
+                        Log.e(TAG, "onFailure: " + t.getCause());
                         Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -109,5 +114,22 @@ public class FormSample extends AppCompatActivity {
             }
             return false;
         });
+    }
+
+    private void sendToWa() {
+        String contact = "+6282172652675";
+        String message =
+                "Form Sample Lab" +
+                "%0aNama : " + nama +
+                "%0aAlamat : " + alamat +
+                "%0aInstansi : " + instansi +
+                "%0aNoHp : " + noHp +
+                "%0aSample : " + sample;
+
+        String url = "https://api.whatsapp.com/send?phone=" + contact + "&text=" + message;
+
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 }

@@ -10,13 +10,14 @@ import com.app.bpsip.Menu.Layanan.Konsultasi;
 import com.app.bpsip.Menu.Layanan.Kunjungan;
 import com.app.bpsip.Menu.Layanan.Laboratorium;
 import com.app.bpsip.Menu.Layanan.Magang;
+import com.app.bpsip.Menu.Layanan.Pengaduan;
 import com.app.bpsip.Menu.Layanan.Upbs;
 import com.app.bpsip.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Layanan extends AppCompatActivity {
 
-    ImageView img1, img2, img3, img4, img5, img6;
+    ImageView img1, img2, img3, img4, img5, img6, img7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,9 @@ public class Layanan extends AppCompatActivity {
         // UPBS
         img6 = findViewById(R.id.upbs);
         img6.setOnClickListener(view -> startActivity(new Intent(Layanan.this, Upbs.class)));
+        // Pengaduan
+        img7 = findViewById(R.id.pengaduan);
+        img7.setOnClickListener(view -> startActivity(new Intent(Layanan.this, Pengaduan.class)));
 
         BottomNavigationView botNavBar = findViewById(R.id.navbar_layanan);
         botNavBar.setSelectedItemId(R.id.menu_layanan);

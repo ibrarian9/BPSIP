@@ -45,7 +45,7 @@ public class VisiDanMisi extends AppCompatActivity {
                 String visi = response.body().getHasil().getOrganisasiVisi();
                 String misi = response.body().getHasil().getOrganisasiMisi();
 
-                visiIsi.setText(visi);
+                visiIsi.setText(HtmlCompat.fromHtml(visi, HtmlCompat.FROM_HTML_MODE_LEGACY));
                 misiIsi.setText(HtmlCompat.fromHtml(misi, HtmlCompat.FROM_HTML_MODE_LEGACY));
             }
 

@@ -30,7 +30,7 @@ import retrofit2.Response;
 public class PimpinanProfil extends AppCompatActivity {
 
     ImageView profil;
-    TextView nama, tempat, tanggal;
+    TextView nama, alamat, noHp, email;
     ApiEndpoint api;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +39,9 @@ public class PimpinanProfil extends AppCompatActivity {
 
         profil = findViewById(R.id.imgProfil);
         nama = findViewById(R.id.tvNamaProfil);
-        tempat = findViewById(R.id.tvTempatProfil);
-        tanggal = findViewById(R.id.tvTanggalProfil);
+        alamat = findViewById(R.id.tvAlamat);
+        noHp = findViewById(R.id.tvNohp);
+        email = findViewById(R.id.tvEmail);
 
         api = ApiCall.getApi().create(ApiEndpoint.class);
         api.getProfil().enqueue(new Callback<ResponsePimpinan>() {
@@ -49,8 +50,9 @@ public class PimpinanProfil extends AppCompatActivity {
             public void onResponse(@NonNull Call<ResponsePimpinan> call, @NonNull Response<ResponsePimpinan> response) {
                 assert response.body() != null;
                 String nProfil = response.body().getHasil().getPimpinanNama();
-                String teProfil = response.body().getHasil().getPimpinanTempatLahir();
-                String tgProfil = response.body().getHasil().getPimpinanTanggalLahir();
+                String aProfil = response.body().getHasil().getPimpinanAlamat();
+                String nhProfil = response.body().getHasil().getPimpinanNoHp();
+                String eProfil = response.body().getHasil().getPimpinanEmail();
                 String gambar = response.body().getHasil().getPimpinanFoto();
 
                 Picasso.get()
@@ -58,13 +60,12 @@ public class PimpinanProfil extends AppCompatActivity {
                         .into(profil);
 
                 nama.setText("Nama" + "    : " + nProfil);
-                tempat.setText("Tempat" + " : " + teProfil);
-                tanggal.setText("Tanggal" + " : " + tgProfil);
+                alamat.setText("Alamat" + " : " + aProfil);
+                noHp.setText("Nomor Handphone" + " : " + nhProfil);
+                email.setText("Email" + " : " + eProfil);
             }
-
             @Override
             public void onFailure(@NonNull Call<ResponsePimpinan> call, @NonNull Throwable t) {
-
             }
         });
 

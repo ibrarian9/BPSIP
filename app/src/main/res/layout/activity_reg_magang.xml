@@ -44,7 +44,6 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="40dp"
         app:layout_constraintTop_toBottomOf="@+id/reg"
         app:layout_constraintBottom_toTopOf="@+id/navbar_regMagang"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,6 +55,7 @@
 
             <TextView
                 android:id="@+id/tv1"
+                android:layout_marginTop="40dp"
                 android:layout_marginStart="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -75,6 +75,8 @@
                 android:paddingEnd="10dp"
                 android:inputType="text"
                 android:layout_marginBottom="10dp"
+                android:textColorHint="@color/greyy"
+                android:textColor="@color/black"
                 android:background="@color/white"
                 android:hint="@string/n_siswa"
                 android:textSize="20sp" />
@@ -90,6 +92,8 @@
                 android:paddingEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white"
+                android:textColorHint="@color/greyy"
+                android:textColor="@color/black"
                 android:hint="@string/n_nim"
                 android:inputType="number"
                 android:textSize="20sp" />
@@ -105,6 +109,8 @@
                 android:paddingEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white"
+                android:textColorHint="@color/greyy"
+                android:textColor="@color/black"
                 android:inputType="text"
                 android:hint="@string/n_univ"
                 android:textSize="20sp"
@@ -121,6 +127,8 @@
                 android:paddingEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white"
+                android:textColorHint="@color/greyy"
+                android:textColor="@color/black"
                 android:inputType="text"
                 android:hint="@string/n_jurusan"
                 android:textSize="20sp" />
@@ -136,7 +144,9 @@
                 android:paddingEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white"
-                android:hint="@string/n_hape"
+                android:textColorHint="@color/greyy"
+                android:textColor="@color/black"
+                android:hint="@string/nomor_hp"
                 android:inputType="phone"
                 android:textSize="20sp" />
 
@@ -151,6 +161,8 @@
                 android:paddingEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white"
+                android:textColorHint="@color/greyy"
+                android:textColor="@color/black"
                 android:inputType="text"
                 android:hint="@string/n_magang"
                 android:textSize="20sp" />
@@ -163,6 +175,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
+                android:textAlignment="center"
                 android:text="@string/upload"
                 android:backgroundTint="@color/white"
                 android:textSize="15sp" />
@@ -172,10 +185,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_below="@+id/uploadFile"
+                android:layout_centerHorizontal="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
                 android:layout_marginEnd="10dp"
                 android:backgroundTint="@color/main"
+                android:textColor="@color/white"
+                android:textAlignment="center"
                 android:text="@string/kirim"
                 android:textSize="20sp" />
 

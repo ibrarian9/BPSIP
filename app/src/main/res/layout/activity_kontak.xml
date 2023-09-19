@@ -41,7 +41,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rl1"/>
 
-    <RelativeLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/white"
@@ -51,73 +51,149 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/tvKontak"
-            android:layout_marginTop="40dp"
-            android:textAlignment="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Kontak"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:paddingTop="10dp"
-            android:id="@+id/tvAlamat"
-            android:paddingStart="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvKontak"
-            android:text="Alamat                :"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/tvKontak"
+                android:layout_marginTop="40dp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kontak"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:paddingTop="10dp"
-            android:id="@+id/tvTelp"
-            android:paddingStart="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvAlamat"
-            android:text="Nomor Telp        :"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/tvAlamat"
+                android:paddingStart="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvKontak"
+                android:justificationMode="inter_word"
+                android:paddingEnd="20dp"
+                android:text="Alamat : Jl. Kaharuddin Nasution 341 Kel. Air Dingin, Kec. Bukit Raya Pekanbaru, Riau, Indonesia
+28284"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
-        <TextView
-            android:paddingTop="10dp"
-            android:id="@+id/tvEmail"
-            android:paddingStart="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvTelp"
-            android:text="Email                   :"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/tvTelp"
+                android:paddingStart="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvAlamat"
+                android:autoLink="phone"
+                android:text="Nomor Telp : (0761) 674206"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
-        <TextView
-            android:paddingTop="10dp"
-            android:id="@+id/tvWeb"
-            android:paddingStart="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvEmail"
-            android:text="Website               :"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_marginTop="20dp"
+                android:paddingStart="20dp"
+                android:autoLink="email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvTelp"
+                android:text="Email : bsip.riau@pertanian.go.id"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
-        <TextView
-            android:paddingTop="10dp"
-            android:id="@+id/tvSosmed"
-            android:paddingStart="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvWeb"
-            android:text="Media Sosial      :"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/tvWeb"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvEmail"
+                android:autoLink="web"
+                android:text="Website : http://riau.bsip.pertanian.go.id/"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
-    </RelativeLayout>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/tvSosmed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_below="@+id/tvWeb"
+                android:text="Media Sosial"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:id="@+id/sosmed"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvSosmed"
+                android:gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <ImageView
+                    android:layout_margin="10dp"
+                    android:id="@+id/facebook"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/facebook" />
+
+                <ImageView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/instagram"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/instagram" />
+
+                <ImageView
+                    android:layout_margin="10dp"
+                    android:id="@+id/x"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/x" />
+
+                <ImageView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/youtube"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/youtube" />
+
+                <ImageView
+                    android:layout_margin="10dp"
+                    android:id="@+id/tiktok"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/tiktok" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/sosmed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bsip"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="40dp"
+                />
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navbar_kontak"

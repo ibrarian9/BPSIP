@@ -89,7 +89,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/tvTempatProfil"
+                android:id="@+id/tvAlamat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvNamaProfil"
@@ -97,20 +97,35 @@
                 android:paddingTop="10dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="10dp"
-                android:text="Tempat"
+                android:justificationMode="inter_word"
+                android:text="Alamat"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/tvTanggalProfil"
+                android:id="@+id/tvNohp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvTempatProfil"
+                android:layout_below="@+id/tvAlamat"
                 android:paddingStart="20dp"
                 android:paddingTop="10dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="10dp"
-                android:text="Tanggal"
+                android:text="Nomor Handphone"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvNohp"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp"
+                android:layout_marginBottom="40dp"
+                android:text="Email"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 

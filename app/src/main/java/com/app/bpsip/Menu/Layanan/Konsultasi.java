@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -33,6 +34,7 @@ public class Konsultasi extends AppCompatActivity {
     EditText edNama, edNik, edAlamat, edInstitusi, edEmail, edNoHp, edPesan;
     ApiEndpoint apiEndpoint;
     Button btnKirim;
+    String nama, nik, alamat, institusi, email, noHp, pesan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +53,13 @@ public class Konsultasi extends AppCompatActivity {
 
         btnKirim = findViewById(R.id.btnKirim);
         btnKirim.setOnClickListener(view -> {
-            String nama = edNama.getText().toString();
-            String nik = edNik.getText().toString();
-            String alamat = edAlamat.getText().toString();
-            String institusi = edInstitusi.getText().toString();
-            String email = edEmail.getText().toString();
-            String noHp = edNoHp.getText().toString();
-            String pesan = edPesan.getText().toString();
+            nama = edNama.getText().toString();
+            nik = edNik.getText().toString();
+            alamat = edAlamat.getText().toString();
+            institusi = edInstitusi.getText().toString();
+            email = edEmail.getText().toString();
+            noHp = edNoHp.getText().toString();
+            pesan = edPesan.getText().toString();
 
             if (nama.equals("")){
                 Toast.makeText(Konsultasi.this, "Nama Masih Kosong", Toast.LENGTH_SHORT).show();
@@ -76,12 +78,13 @@ public class Konsultasi extends AppCompatActivity {
             } else {
 
                 Call<ResponseKonsul> postKonsul = apiEndpoint.postKonsul(nama, nik, alamat, institusi, email, noHp, pesan);
-
                 postKonsul.enqueue(new Callback<ResponseKonsul>() {
                     @Override
                     public void onResponse(@NonNull Call<ResponseKonsul> call, @NonNull Response<ResponseKonsul> response) {
-                        Toast.makeText(getApplicationContext(),"Form Berhasil Di Kirim", Toast.LENGTH_SHORT).show();
-                        finish();
+                        if (response.isSuccessful()) {
+                            sendToWa();
+                            finish();
+                        }
                     }
                     @Override
                     public void onFailure(@NonNull Call<ResponseKonsul> call, @NonNull Throwable t) {
@@ -92,7 +95,6 @@ public class Konsultasi extends AppCompatActivity {
                 });
             }
         });
-
 
         BottomNavigationView botNavbar = findViewById(R.id.navbar_konsultasi);
 
@@ -116,7 +118,23 @@ public class Konsultasi extends AppCompatActivity {
             }
             return false;
         });
+    }
+    private void sendToWa() {
+        String contact = "+6282172652675";
+        String message =
+                "Form Konsultasi " +
+                        "%0aNik : " + nik +
+                        "%0aNama : " + nama +
+                        "%0aAlamat : " + alamat +
+                        "%0aInstitusi : " + institusi +
+                        "%0aEmail : " + email +
+                        "%0aNo Hape : " + noHp +
+                        "%0aPesan : " + pesan;
 
+        String url = "https://api.whatsapp.com/send?phone=" + contact + "&text=" + message;
 
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 }

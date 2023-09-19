@@ -44,7 +44,6 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="40dp"
         app:layout_constraintTop_toBottomOf="@+id/reg"
         app:layout_constraintBottom_toTopOf="@+id/navbar_benih"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,6 +55,7 @@
 
             <TextView
                 android:id="@+id/tv1"
+                android:layout_marginTop="40dp"
                 android:layout_marginStart="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -75,6 +75,8 @@
                 android:layout_marginEnd="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:textColorHint="@color/greyy"
+                android:textColor="@color/black"
                 android:hint="@string/nama"
                 android:inputType="text"
                 android:textSize="20sp" />
@@ -89,6 +91,8 @@
                 android:paddingEnd="10dp"
                 android:background="@color/white"
                 android:layout_width="match_parent"
+                android:textColorHint="@color/greyy"
+                android:textColor="@color/black"
                 android:layout_height="48dp"
                 android:hint="@string/nik"
                 android:inputType="number"
@@ -104,6 +108,8 @@
                 android:paddingEnd="10dp"
                 android:background="@color/white"
                 android:layout_width="match_parent"
+                android:textColorHint="@color/greyy"
+                android:textColor="@color/black"
                 android:layout_height="48dp"
                 android:hint="@string/alamat"
                 android:inputType="textMultiLine"
@@ -119,22 +125,26 @@
                 android:paddingEnd="10dp"
                 android:background="@color/white"
                 android:layout_width="match_parent"
+                android:textColorHint="@color/greyy"
+                android:textColor="@color/black"
                 android:layout_height="48dp"
                 android:hint="Nama Kelompok Tani"
                 android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/jabatan"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
                 android:layout_below="@+id/tani"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:hint="Jabatan"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:background="@color/white"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="Jabatan"
+                android:textColor="@color/black"
+                android:textColorHint="@color/greyy"
                 android:textSize="20sp" />
 
             <EditText
@@ -148,6 +158,8 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:background="@color/white"
+                android:textColorHint="@color/greyy"
+                android:textColor="@color/black"
                 android:hint="Luas Kepemilikan Lahan"
                 android:textSize="20sp" />
 
@@ -162,7 +174,9 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:background="@color/white"
-                android:hint="Komoditas Yang di Budidayakan"
+                android:textColorHint="@color/greyy"
+                android:textColor="@color/black"
+                android:hint="Komoditas yang dibudidayakan"
                 android:textSize="20sp" />
 
             <EditText
@@ -176,6 +190,8 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:background="@color/white"
+                android:textColorHint="@color/greyy"
+                android:textColor="@color/black"
                 android:hint="Kebutuhan Benih"
                 android:textSize="20sp" />
 
@@ -191,7 +207,9 @@
                 android:paddingEnd="10dp"
                 android:inputType="phone"
                 android:background="@color/white"
-                android:hint="@string/n_hape"
+                android:textColorHint="@color/greyy"
+                android:textColor="@color/black"
+                android:hint="@string/nomor_hp"
                 android:textSize="20sp" />
 
             <Button
@@ -212,8 +230,10 @@
                 android:layout_height="50dp"
                 android:layout_below="@+id/btn_upload"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
                 android:layout_marginEnd="10dp"
+                android:textColor="@color/white"
                 android:backgroundTint="@color/main"
                 android:text="@string/kirim"
                 android:textSize="20sp" />

@@ -63,12 +63,12 @@ public class FormMagang extends AppCompatActivity {
     public static final String DATE_FORMAT = "yyyyMMdd_HHmmss";
     private Boolean upflag = false;
     EditText edNama, edNim, edSekolah, edJurusan, edNoHp, edWaktu;
-    ApiEndpoint apiEndpoint;
+    ApiEndpoint api;
     Button btnKirim, btnUploadFile;
     public String pdfName, fName;
     private File dFile, sFile, file;
+    String nama, nim, sekolah, jurusan, noHp, waktu;
     ActivityResultLauncher<Intent> resultLauncher;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,9 +79,6 @@ public class FormMagang extends AppCompatActivity {
         file = new File(path + "/" + PDF_DIR);
         if (!file.exists()) {
             file.mkdirs();
-            Log.d("Dir", "Directory Created");
-        } else {
-            Log.e("Dir", "Dir Not Created");
         }
 
         SimpleDateFormat dateFormat = new SimpleDateFormat(
@@ -97,22 +94,21 @@ public class FormMagang extends AppCompatActivity {
         edNoHp = findViewById(R.id.magangNoHp);
         edWaktu = findViewById(R.id.magangWaktu);
 
-        apiEndpoint = ApiCall.getApi().create(ApiEndpoint.class);
-
-        btnUploadFile = findViewById(R.id.uploadFile);
+        api = ApiCall.getApi().create(ApiEndpoint.class);
 
         btnKirim = findViewById(R.id.send);
         btnKirim.setOnClickListener(view -> {
-
             final String mFile = pdfName;
-            String nama = edNama.getText().toString();
-            String nim = edNim.getText().toString();
-            String sekolah = edSekolah.getText().toString();
-            String jurusan = edJurusan.getText().toString();
-            String noHp = edNoHp.getText().toString();
-            String waktu = edWaktu.getText().toString();
+            nama = edNama.getText().toString();
+            nim = edNim.getText().toString();
+            sekolah = edSekolah.getText().toString();
+            jurusan = edJurusan.getText().toString();
+            noHp = edNoHp.getText().toString();
+            waktu = edWaktu.getText().toString();
 
-            if (nama.equals("")) {
+            if (mFile == null) {
+                Toast.makeText(FormMagang.this, "File Masih Kosong", Toast.LENGTH_SHORT).show();
+            } else if (nama.equals("")) {
                 Toast.makeText(FormMagang.this, "Nama Masih Kosong", Toast.LENGTH_SHORT).show();
             } else if (nim.equals("")) {
                 Toast.makeText(FormMagang.this, "Nim Masih Kosong", Toast.LENGTH_SHORT).show();
@@ -124,23 +120,16 @@ public class FormMagang extends AppCompatActivity {
                 Toast.makeText(FormMagang.this, "Nomor Hape Masih Kosong", Toast.LENGTH_SHORT).show();
             } else if (waktu.equals("")) {
                 Toast.makeText(FormMagang.this, "Waktu Masih Kosong", Toast.LENGTH_SHORT).show();
-            } else if (mFile == null) {
-                Toast.makeText(FormMagang.this, "File Masih Kosong", Toast.LENGTH_SHORT).show();
             } else {
-                Call<ResponseMagang> postMagang = apiEndpoint.postMagang(nama, nim, sekolah, jurusan, waktu, noHp, mFile);
 
-                postMagang.enqueue(new Callback<ResponseMagang>() {
+                Call<ResponseMagang> magangCall = api.postMagang(nama, nim, sekolah, jurusan, waktu, noHp, mFile);
+                magangCall.enqueue(new Callback<ResponseMagang>() {
                     @Override
                     public void onResponse(@NonNull Call<ResponseMagang> call, @NonNull Response<ResponseMagang> response) {
                         if (response.isSuccessful()) {
                             new UploadFile().execute();
-                            Toast.makeText(getApplicationContext(), "Form Berhasil Di Kirim", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(FormMagang.this, Layanan.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
+                            sendToWa();
                             finish();
-                        } else {
-                            assert response.body() != null;
-                            Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                     @Override
@@ -152,6 +141,7 @@ public class FormMagang extends AppCompatActivity {
             }
         });
 
+        btnUploadFile = findViewById(R.id.uploadFile);
         btnUploadFile.setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.setType("application/pdf");
@@ -171,6 +161,7 @@ public class FormMagang extends AppCompatActivity {
                             sFile = new File(getPathFromUri(uriFile));
 
                             fName = pdfName;
+                            Log.d("nama File", "onCreate: " + pdfName );
 
                             dFile = new File(file, fName);
 
@@ -212,6 +203,23 @@ public class FormMagang extends AppCompatActivity {
             return false;
         });
     }
+    private void sendToWa() {
+        String contact = "+6282172652675";
+        String message =
+                "Form Magang " +
+                        "%0aNama : " + nama +
+                        "%0aNim : " + nim +
+                        "%0aInstansi : " + sekolah +
+                        "%0aJurusan : " + jurusan +
+                        "%0aNoHp : " + noHp +
+                        "%0aWaktu : " + waktu;
+
+        String url = "https://api.whatsapp.com/send?phone=" + contact + "&text=" + message;
+
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
+    }
 
     class UploadFile extends AsyncTask<String, String, String> {
 
@@ -226,7 +234,6 @@ public class FormMagang extends AppCompatActivity {
             }
             return null;
         }
-
         protected void onPostExecute(String s) {
             if (upflag) {
                 finish();
@@ -235,7 +242,6 @@ public class FormMagang extends AppCompatActivity {
             }
         }
     }
-
     public String getPathFromUri(Uri uriFile) {
         if (uriFile == null)
             return null;
@@ -274,13 +280,11 @@ public class FormMagang extends AppCompatActivity {
             // Do nothing
         }
     }
-
     private static String getTempFilename(Context context) throws IOException {
         File outputDir = context.getCacheDir();
         File outputFile = File.createTempFile("file", "tmp", outputDir);
         return outputFile.getAbsolutePath();
     }
-
     private void copyFile(File sFile, File dFile) throws IOException {
         if (!sFile.exists()) {
             Log.e("cFile", "Sfile not Exist");

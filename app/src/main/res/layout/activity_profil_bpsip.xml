@@ -75,6 +75,7 @@
                 android:paddingEnd="20dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
+                android:layout_marginBottom="40dp"
                 android:text="profil"
                 android:justificationMode="inter_word"
                 android:textColor="@color/black"

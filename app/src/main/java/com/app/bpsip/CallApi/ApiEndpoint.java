@@ -2,6 +2,8 @@ package com.app.bpsip.CallApi;
 
 
 
+import com.app.bpsip.Model.Hasil;
+import com.app.bpsip.Model.Pengunjung;
 import com.app.bpsip.Model.ResponseInfo;
 import com.app.bpsip.Model.ResponseKunjungan;
 import com.app.bpsip.Model.ResponseLab;
@@ -9,15 +11,21 @@ import com.app.bpsip.Model.ResponseOrganisasi;
 import com.app.bpsip.Model.ResponseKonsul;
 import com.app.bpsip.Model.ResponseLabor;
 import com.app.bpsip.Model.ResponseMagang;
+import com.app.bpsip.Model.ResponsePengaduan;
+import com.app.bpsip.Model.ResponsePengunjung;
 import com.app.bpsip.Model.ResponsePimpinan;
 import com.app.bpsip.Model.ResponseStock;
 import com.app.bpsip.Model.ResponseUpbs;
 
+import java.sql.Date;
+
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public interface ApiEndpoint {
 
@@ -38,6 +46,12 @@ public interface ApiEndpoint {
 
     @GET("kunjungan/getKunjungan")
     Call<ResponseKunjungan> getKunjungan();
+
+    @GET("pengunjung/get")
+    Call<ResponsePengunjung> getPengunjung();
+
+    @PUT("pengunjung/update/1")
+    Call<ResponsePengunjung> updatePengunjung(@Body Hasil updateData);
 
     @FormUrlEncoded
     @POST("laboratorium/store")
@@ -77,5 +91,18 @@ public interface ApiEndpoint {
                                 @Field("upbs_kebutuhan_benih") String benih,
                                 @Field("upbs_no_hp") String noHp,
                                 @Field("upbs_surat") String surat);
+
+    @FormUrlEncoded
+    @POST("pengaduan/store")
+    Call<ResponsePengaduan> postPengaduan(@Field("pengaduan_nama") String nama,
+                                          @Field("pengaduan_nik") String nik,
+                                          @Field("pengaduan_alamat") String alamat,
+                                          @Field("pengaduan_tempat") String tempat,
+                                          @Field("pengaduan_tanggal") String tanggal,
+                                          @Field("pengaduan_no_hp") String noHp,
+                                          @Field("pengaduan_foto") String foto,
+                                          @Field("pengaduan_pengaduan") String pengaduan);
+
+
 
 }

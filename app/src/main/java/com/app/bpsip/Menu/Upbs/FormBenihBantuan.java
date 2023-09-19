@@ -54,11 +54,12 @@ public class FormBenihBantuan extends AppCompatActivity {
     public static final String PDF_DIR = "bpsip/bibit";
     public static final String DATE_FORMAT = "yyyyMMdd_HHmmss";
     private Boolean upflag = false;
-    EditText edNama, edNik, edAlamat, edKelTani, edJabatan ,edLuasLahan, edKomoditas, edBenih, edNoHp;
+    EditText edNama, edNik, edAlamat, edKelTani, edJabatan, edLuasLahan, edKomoditas, edBenih, edNoHp;
     ApiEndpoint apiEndpoint;
     String pdfName, fName;
     Button btnSend, btnUpload;
     private File dFile, sFile, file;
+    String nama, nik, alamat, klmp_tani, jabatan, lahan, komoditas, benih, noHp;
     ActivityResultLauncher<Intent> resultLauncher;
 
     @Override
@@ -97,19 +98,19 @@ public class FormBenihBantuan extends AppCompatActivity {
         btnSend.setOnClickListener(view -> {
 
             final String mFile = pdfName;
-            String nama = edNama.getText().toString();
-            String nik = edNik.getText().toString();
-            String alamat = edAlamat.getText().toString();
-            String klmp_tani = edKelTani.getText().toString();
-            String jabatan = edJabatan.getText().toString();
-            String lahan = edLuasLahan.getText().toString();
-            String komoditas = edKomoditas.getText().toString();
-            String benih = edBenih.getText().toString();
-            String noHp = edNoHp.getText().toString();
+            nama = edNama.getText().toString();
+            nik = edNik.getText().toString();
+            alamat = edAlamat.getText().toString();
+            klmp_tani = edKelTani.getText().toString();
+            jabatan = edJabatan.getText().toString();
+            lahan = edLuasLahan.getText().toString();
+            komoditas = edKomoditas.getText().toString();
+            benih = edBenih.getText().toString();
+            noHp = edNoHp.getText().toString();
 
-            if (mFile == null){
+            if (mFile == null) {
                 Toast.makeText(FormBenihBantuan.this, "File Masih Kosong", Toast.LENGTH_SHORT).show();
-            } else if (nama.equals("")){
+            } else if (nama.equals("")) {
                 Toast.makeText(FormBenihBantuan.this, "Nama Masih Kosong", Toast.LENGTH_SHORT).show();
             } else if (nik.equals("")) {
                 Toast.makeText(FormBenihBantuan.this, "Nik Masih Kosong", Toast.LENGTH_SHORT).show();
@@ -128,23 +129,22 @@ public class FormBenihBantuan extends AppCompatActivity {
             } else if (noHp.equals("")) {
                 Toast.makeText(FormBenihBantuan.this, "Nomor Hape Masih Kosong", Toast.LENGTH_SHORT).show();
             } else {
-                Call<ResponseUpbs> postUpbsCall = apiEndpoint.postUpbs(nama, nik, alamat, klmp_tani, jabatan ,lahan, komoditas, benih, noHp, mFile);
+
+                Call<ResponseUpbs> postUpbsCall = apiEndpoint.postUpbs(nama, nik, alamat, klmp_tani, jabatan, lahan, komoditas, benih, noHp, mFile);
 
                 postUpbsCall.enqueue(new Callback<ResponseUpbs>() {
                     @Override
                     public void onResponse(@NonNull Call<ResponseUpbs> call, @NonNull Response<ResponseUpbs> response) {
-                        if (response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             new UploadFile().execute();
-                            Toast.makeText(getApplicationContext(),"Form Berhasil Di Kirim", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(FormBenihBantuan.this, Layanan.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
+                            sendToWa();
                             finish();
                         }
                     }
                     @Override
                     public void onFailure(@NonNull Call<ResponseUpbs> call, @NonNull Throwable t) {
-                        Log.e(TAG, "onFailure: "+t.getMessage());
-                        Log.e(TAG, "onFailure: "+t.getCause());
+                        Log.e(TAG, "onFailure: " + t.getMessage());
+                        Log.e(TAG, "onFailure: " + t.getCause());
                         Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -164,7 +164,7 @@ public class FormBenihBantuan extends AppCompatActivity {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent data = result.getData();
 
-                        if (data != null){
+                        if (data != null) {
                             upflag = true;
 
                             Uri uri = data.getData();
@@ -209,6 +209,27 @@ public class FormBenihBantuan extends AppCompatActivity {
             }
             return false;
         });
+    }
+
+    private void sendToWa() {
+        String contact = "+6282172652675";
+        String message =
+                "Form Benih Bantuan " +
+                        "%0aNama : " + nama +
+                        "%0aNik : " + nik +
+                        "%0aAlamat : " + alamat +
+                        "%0aKelompok Tani : " + klmp_tani +
+                        "%0aJabatan : " + jabatan +
+                        "%0aLuas Lahan : " + lahan +
+                        "%0aKomoditas : " + komoditas +
+                        "%0aBenih : " + benih +
+                        "%0aNo Hape : " + noHp;
+
+        String url = "https://api.whatsapp.com/send?phone=" + contact + "&text=" + message;
+
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 
     class UploadFile extends AsyncTask<String, String, String> {
