@@ -30,8 +30,6 @@ public class Magang extends AppCompatActivity {
         info = findViewById(R.id.imgInfo);
         info.setOnClickListener(view -> startActivity(new Intent(Magang.this, MagangInfo.class)));
 
-
-
         BottomNavigationView botNavbar = findViewById(R.id.navbar_magang);
         botNavbar.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
