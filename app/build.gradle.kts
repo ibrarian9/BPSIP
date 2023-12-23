@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.app.bpsip"
+    namespace = "com.app.bs1p"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.app.bpsip"
+        applicationId = "com.app.bs1p"
         minSdk = 28
         targetSdk = 33
         versionCode = 1
